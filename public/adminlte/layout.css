@@ -1,0 +1,95 @@
+[class*=sidebar-dark-] {
+    background-color: rgba(0,0,0)!important;
+}
+
+.navbar-dark {
+    background-color: #7356a9!important;
+}
+
+.layout-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*=navbar]) {
+    background-color: #7356a9!important;
+}
+
+[class*=sidebar-dark] .brand-link {
+    border-bottom: 1px solid #343a40!important;
+}
+
+.brand-link .brand-image {
+    background: #ffffff;
+}
+
+[class*=sidebar-dark-] .nav-sidebar .nav-item.menu-open>.nav-link
+{
+    background-color: rgba(216, 203, 237,.4)!important;
+}
+
+.content-wrapper {
+    background: #d4d8dc!important;
+}
+
+.page-item.active .page-link {
+	color: #fff!important;
+    background-color: #7356a9!important;
+    border-color: #7356a9!important;
+}
+
+.page-link {
+    color: #666!important;
+}
+
+.card-purple:not(.card-outline)>.card-header {
+    background-color: #7356a9!important;
+}
+
+.tr-color {
+    background: #7356a9;
+    color: #fff;
+}
+
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active {
+    background-color: rgba(190,169,227,.4)!important;
+    color: #fff!important;
+}
+
+table.table-bordered.dataTable td:last-child, table.table-bordered.dataTable td:last-child {
+    border-right-width: 1px!important;
+}
+
+.card-purple.card-outline {
+    border-top: 3px solid #7356a9!important;
+}
+
+.card-lightpurple.card-outline {
+    border-top: 10px solid #C3ACF9!important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[aria-selected]:hover {
+    background-color: #7356a9!important;
+    color: #fff!important;
+}
+
+p.left{
+    margin-left: 12px!important;
+}
+
+.required {
+    color: #e02222;
+    font-size: 12px;
+    padding-left: 2px;
+}
+
+td.danger {
+    background-color: #e04b59;
+    color: #fff;
+}
+
+th.align, td.align
+{
+    text-align: center; 
+    vertical-align: middle!important;
+}
+
+td.text
+{
+    text-align: justify; 
+}

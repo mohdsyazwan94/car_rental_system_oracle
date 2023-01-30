@@ -1,0 +1,80 @@
+ul.page-content .page-breadcrumb.breadcrumb {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    box-shadow: none;
+    padding-right: 30px;
+    padding-left: 8px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    border: 0px !important;
+}
+
+ul.breadcrumb {
+    padding: 8px 15px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: darkgrey;
+    border-radius: 4px;
+}
+
+ul.breadcrumb-items+.breadcrumb-items {
+    padding-left: .5rem;
+}
+
+ul.breadcrumb-items+.breadcrumb-items::before {
+    display: inline-block;
+    padding-right: .5rem;
+    color: #6c757d;
+    content: ">";
+}
+
+i.fa-angle-right:before {
+    content: "\f105";
+    color: grey
+}
+
+:before, :after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.page-content .page-breadcrumb.breadcrumb > li > i {
+    color: #666;
+}
+.page-content .page-breadcrumb.breadcrumb > li > a, .page-content .page-breadcrumb.breadcrumb > li > i, .page-content .page-breadcrumb.breadcrumb > li > span {
+    color: #333;
+    font-size: 14px;
+    text-shadow: none;
+}
+
+li [class^="fa-"], li [class*=" fa-"] {
+    display: inline-block;
+    width: 1.25em;
+    text-align: center;
+}
+
+a.page {
+    color: #808080
+}
+
+a.page:hover  {
+    color: #A0A0A0
+}
+
+.card-grey.card-outline {
+    border-top: 3px solid #A9A9A9;
+}
+
+body {
+    font-size: 14px!important;
+}
+
+.btn {
+    font-size: 14px!important;
+}
+
+.form-control {
+    font-size: 14px!important;
+}
