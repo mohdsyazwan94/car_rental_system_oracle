@@ -5,8 +5,8 @@
         @yield('css')
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Riverview Hotel</title>
-        <meta name="description" content="Riverview Hotel Sdn Bhd">
+        <title>Perak Car Rental</title>
+        <meta name="description" content="Perak Car Rental">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
 
@@ -142,7 +142,7 @@
                       <div class="row d-flex align-items-center">
                           <div class="col-lg-12">
                               <div class="footer-copy-right text-center">
-                                  <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Riverview Hotel Sdn Bhd | Powered By SpaceX</p>
+                                  <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Perak Car Rental | Powered By SpaceX</p>
                               </div>
                           </div>
                       </div>

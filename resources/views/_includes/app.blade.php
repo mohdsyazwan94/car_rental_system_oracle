@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 		<link rel="shortcut icon" type="image/x-icon" href="{{asset('img/favicon.png') }}">
-        <title>Riverview Hotel</title>
+        <title>Perak Car Rental</title>
 		<!-- Google Font: Source Sans Pro -->
 		{{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 		<!-- Font Awesome Icons -->
@@ -72,7 +72,7 @@
 			<!-- Main Footer -->
 			<footer class="main-footer text-center">
 				<!-- Default to the left -->
-				<strong>Copyright &copy; {{date('Y')}} All rights reserved | Riverview Hotel Sdn Bhd | Powered By SpaceX</strong>
+				<strong>Copyright &copy; {{date('Y')}} All rights reserved | Perak Car Rental | Powered By SpaceX</strong>
 			</footer>
 		</div>
 		<!-- ./wrapper -->

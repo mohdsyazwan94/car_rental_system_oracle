@@ -36,7 +36,7 @@
 			alt="AdminLTE Logo " 
 			class="ms-5 brand-image img-circle elevation-3"
 			style="opacity: .8">
-		<span>RIVERVIEW</span>
+		<span>PERAK CAR RENTAL</span>
 	</div>
 	<!-- Sidebar -->
 	<div class="sidebar">

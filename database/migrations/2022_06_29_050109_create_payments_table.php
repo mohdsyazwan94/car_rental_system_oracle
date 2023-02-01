@@ -13,17 +13,15 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        // Schema::create('payments', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->foreignId('reservation_id')->constrained('reservations');
-        //     $table->string('payment_type', 30);
-        //     $table->string('payment_status', 30);
-        //     $table->decimal('total_payment', 9, 2);
-        //     $table->date('payment_date');
-        //     $table->string('remarks', 255)->nullable();
-        //     $table->timestamps();
-        //     $table->softDeletes();
-        // });
+        Schema::create('payment', function (Blueprint $table) {
+            $table->id('payment_id');
+            $table->foreignId('booking_id')->references('booking_id')->on('booking');
+            $table->foreignId('approved_by')->nullable()->references('user_id')->on('user');
+            $table->date('payment_date');
+            $table->string('payment_total', 9, 2);
+            $table->timestamps();
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -33,6 +31,6 @@ class CreatePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('payment');
     }
 }

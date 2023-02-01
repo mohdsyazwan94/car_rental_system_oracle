@@ -24,7 +24,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="hero__caption">
-                                    <h1 style="text-align:center;"><span style="color:#FFFFFF;">RIVERVIEW HOTEL</span></h1>
+                                    <h1 style="text-align:center;"><span style="color:#FFFFFF; background-color:grey; opacity: 0.8;">PERAK CAR RENTAL</span></h1>
                                     <div class="d-flex align-items-center">
                                         <div class="container" style="width:70%">
                                         <form method="GET" action="{{ route('checkReservation') }}">
@@ -70,8 +70,8 @@
                                 <span><i class="fa fa-star"></i></span>
                             </div>
                             <div class="info-caption">
-                                <p>Best Rate Guarantee</p>
-                                <span>No Hidden Charges</span>
+                                <p>Multiple car selection</p>
+                                <span>10+ Car Models</span>
                             </div>
                         </div>
                     </div>
@@ -81,8 +81,8 @@
                                 <span><i class="fa fa-map-marker"></i></span>
                             </div>
                             <div class="info-caption">
-                                <p>Riverview Hotel Sdn Bhd</p>
-                                <span>Bahau, Negeri Sembilan</span>
+                                <p>Perak Car Rental</p>
+                                <span>Ipoh, Perak</span>
                             </div>
                         </div>
                     </div>
@@ -97,34 +97,15 @@
                     <div class="col-lg-6 col-md-12">
                         <div class="about-caption mb-50">
                             <!-- Section Tittle -->
-                            <div class="section-tittle mb-35">
+                            <div class="section-tittle mb-10">
                                 <span>Company Background</span>
-                                <h3><strong>Riverview Hotel Sdn Bhd</strong></h3>
+                                <h3><strong>Perak Car Rental</strong></h3>
                             </div>
-							<p>
-							Riverview hotel is led by Mr Peter Ng who has been 
-                            in the hotel industry for 22 years. While Mr Peter Ng 
-                            has never been developed a hotel from the ground up, 
-                            He was works in hotel industry most recently as a 
-                            general manager and has held various position in 
-                            hotel management chain over 15 years.as such 
-                            Encik Halim has an in-depth knowledge of hotel business 
-                            including operating and business management. 
-                            This hotel located at Riverview Hotel & Business Centre 
-                            Jalan Kiara 2 Pusat Perniagaan Kiara, Bahau Negeri Sembilan.
+							<p>Perak Car Rental belongs to Perak Sdn Bhd company and was established in 2010, beginning as a small car rental business in Jasin, Melaka.
 							</p>
-							<p>
-							Riverview Hotel in Bahau comes with different types of rooms.
-                            Riverview Hotel provides significant services for a business-travel 
-                            experience. The hotel's business centre is designated to meet all 
-                            your business travel with the facilities of meeting rooms and 
-                            conference room in the hotel. Family- friendly hotel provides hotel 
-                            guests the facility of outdoor child pool. Amazing and breezy surrounding 
-                            roof top restaurant enables guest to enjoy meals and have a drink at the 
-                            bar. 24 hours indoor parking facilities available for hotel guests. 
-                            The hotel is directly accessible from the indoor car park and guests 
-                            can easily reach the hotel. As of 2022, the number of employees acquired 
-                            by the hotel are 15 employees, ranging from male and female.
+							<p>Perak Car Rental has 50 vehicles of many types such as Economy, Compact, Intermediate, Full size, and Luxury. Since not all students or staff can afford to have their vehicle. The raising taxi fare and inconsistent bus arrivals have encouraged the students to rent the car for their requirement.  
+							</p>
+                            <p>As of 2022, the number of representatives obtained by Perak Car Rental are 25 workers, extending from male and female. Perak Car rental has provided an elective car for those who look for a car rental for their occasion of the day. Perak Car Rental could be a put for everybody to have a sense of adaptability to total their errand in day or night-time since it is open 24/7 regular with reasonable prices and customer service and support. 
 							</p>
                         </div>
                     </div>
@@ -159,10 +140,10 @@
     					<div class="media contact-info">
     						<span class="contact-info__icon"><i class="ti-home"></i></span>
     						<div class="media-body">
-    							<h3>Riverview Hotel Sdn Bhd</h3>
-    							<p>Business Centre Jalan Kiara 2,<br>
-    							Pusat Perniagaan Kiara,  <br>
-    							Bahau, Negeri Sembilan. <br>
+    							<h3>Perak Car Rental</h3>
+    							<p>Lot 132 Jalan Lama,<br>
+    							Pusat Perniagaan Bentara,  <br>
+    							Ipoh, Perak. <br>
     							</p>
     						</div>
     					</div>
@@ -176,13 +157,13 @@
     					<div class="media contact-info">
     						<span class="contact-info__icon"><i class="ti-email"></i></span>
     						<div class="media-body">
-    							<h3><a class="btn-link text-dark" href="mailto:enquiry@znsgloballlogistics.com">enquiry@riverview.com</a></h3>
+    							<h3><a class="btn-link text-dark" href="mailto:enquiry@znsgloballlogistics.com">enquiry@perakcarrental.com</a></h3>
     							<p>Send us your query anytime!</p>
     						</div>
     					</div>
     				</div>
     				<div class="col-md-6">
-                        <a target="_blank" href="https://maps.google.com/maps?q=3.0839655,101.6726761/2.8105407,102.3942572/@2.7984208,101.7674475">
+                        <a target="_blank" href="https://goo.gl/maps/mNzuJT74AoEftBGh9">
                             <img src="{{ asset('img/map-location.png') }}" class="img-fluid" />
                         </a>
                     </div>

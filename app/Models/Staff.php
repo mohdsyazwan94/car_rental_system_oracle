@@ -21,7 +21,7 @@ class Staff extends User
      * @var array
      */
     protected $casts = [
-        'user_id' => 'integer',
+        'staff_id' => 'integer',
         'manager_id' => 'integer',
         'date_joined' => 'datetime',
         'designation' => 'string',

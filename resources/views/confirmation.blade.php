@@ -47,7 +47,7 @@
       <div class="row invoice-info">
         <!-- /.col -->
         <div class="col-md-12 invoice-col">
-          <i class="fas fa-globe"></i><b> Riverview Hotel Sdn Bhd</b><br>
+          <i class="fas fa-globe"></i><b> Perak Car Rental</b><br>
           <br>
           <b>Check-in date:</b> {{ $start_date }}<br>
           <b>Check-out date:</b> {{ $end_date }}<br>

@@ -18,7 +18,7 @@
                     </div>
                     <div class="card-body pt-0">
                         <div class="text-purple">
-                            <h4 class="text-center pt-3 pb-3">RIVERVIEW HOTEL <br>RESERVATION SYSTEM</h4>
+                            <h4 class="text-center pt-3 pb-3">PERAK CAR RENTAL <br>RESERVATION SYSTEM</h4>
                         </div>
                         <div class="col-12">
                             <div class="card  card-outline card-purple card-tabs">
@@ -68,7 +68,7 @@
                                                 <!-- col -->
                                                 <div class="col-lg-12">
                                                     <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">LOGIN</button>
-                                                    <a href="#" class="btn btn-warning btn-block waves-effect waves-light" data-toggle="modal" data-target="#resetModal" data-dismiss="modal" aria-label="Close">Forgot Password?</a>
+                                                    {{-- <a href="#" class="btn btn-warning btn-block waves-effect waves-light" data-toggle="modal" data-target="#resetModal" data-dismiss="modal" aria-label="Close">Forgot Password?</a> --}}
                                                 </div>
                                                 
                                                 <!-- /.col -->
@@ -105,7 +105,7 @@
                     </div>
                 </div>
                 <div class="mt-2 text-center">
-                <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Riverview Hotel Sdn Bhd | Powered By SpaceX</p>
+                <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Perak Car Rental | Powered By SpaceX</p>
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@
         <div class="row">
           <div class="col-12">
             <h4>
-              <i class="fas fa-globe"></i> Riverview Hotel Sdn Bhd.
+              <i class="fas fa-globe"></i> Perak Car Rental
               <small class="float-right">Date: {{ $today_date }}</small>
             </h4>
           </div>

@@ -19,7 +19,7 @@ class Student extends User
      * @var array
      */
     protected $casts = [
-        'user_id' => 'integer',
+        'student_id' => 'integer',
         'student_no' => 'string',
         'course_name' => 'string'
     ];

@@ -14,13 +14,11 @@ class CreateStaffTable extends Migration
     public function up()
     {
         Schema::create('staff', function (Blueprint $table) {
-            $table->id(['user', 'customer_id']);
-            $table->foreignId('user_id')->references('user_id')->on('user');
+            $table->id('user_id');
             $table->string('date_joined');
             $table->string('designation');
             $table->string('salary');
             $table->foreignId('manager_id')->references('user_id')->on('user');
-            //$table->foreignId('staff_id')->references('user_id')->on('user');
         });
     }
 

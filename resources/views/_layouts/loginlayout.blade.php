@@ -4,8 +4,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Riverview Hotel</title>
-    <meta name="description" content="Riverview Hotel Sdn Bhd">
+    <title>Perak Car Rental</title>
+    <meta name="description" content="Perak Car Rental">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
     <!-- CSS here -->
