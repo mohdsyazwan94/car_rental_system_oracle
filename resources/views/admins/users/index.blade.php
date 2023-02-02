@@ -52,8 +52,8 @@
                         <td>{{ $user->designation }}</td>
                         <td>{{ $user->managerDetails->full_name ?? '' }}</td>
                         <td class="text-center">
-                            <a href="{{ route('users.edit', ['user' => $user->id]) }}" title="Edit User" class="btn btn-sm btn-secondary text-nowrap mb-1" ><span class="fas fa-edit"></span> Edit</a>
-                            <a href="{{ route('users.destroy', ['user' => $user->id])}}" class="btn btn-sm btn-danger mb-1" data-toggle="modal" data-target="#modal-delete" ><span class="fas fa-trash"></span> Delete</a>
+                            <a href="{{ route('users.edit', ['user' => $user->staff_id]) }}" title="Edit User" class="btn btn-sm btn-secondary text-nowrap mb-1" ><span class="fas fa-edit"></span> Edit</a>
+                            <a href="{{ route('users.destroy', ['user' => $user->staff_id])}}" class="btn btn-sm btn-danger mb-1" data-toggle="modal" data-target="#modal-delete" ><span class="fas fa-trash"></span> Delete</a>
                         </td>
                     </tr>
                 @endforeach

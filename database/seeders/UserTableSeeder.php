@@ -15,30 +15,28 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         User::create(array(
-            'name'         => 'MOHD SYAZWAN SYAFIQ BIN ABD RASHID',
-            'email'        => 'mohd.syazwan@outlook.com',
+            'full_name'         => 'MOHD SYAZWAN',
+            'email'        => 'syazwan@gmail.com',
             'password'     => \Hash::make('admin1234'),
             'phone'        => '0149060823'
         ));
 
         User::create(array(
-            'name'         => 'MUHAMMAD ZULFADZLI BIN KHAIRUL ANWAR',
+            'full_name'         => 'MUHAMMAD ZULFADZLI',
             'email'        => 'admin@gmail.com',
             'password'     => \Hash::make('admin1234'),
             'phone'        => '0123456789'
         ));
 
-        
-
         User::create(array(
-            'name'         => 'MOHAMMAD ARIFF BIN MOHAMMAD ALI',
+            'full_name'         => 'MOHAMMAD ARIFF',
             'email'        => 'customer1@gmail.com',
             'password'     => \Hash::make('customer1234'),
             'phone'        => '0123456789',
         ));
 
         User::create(array(
-            'name'         => 'FATIN AMALINA BINTI MAT JURI',
+            'full_name'         => 'FATIN AMALINA',
             'email'        => 'customer2@gmail.com',
             'password'     => \Hash::make('customer1234'),
             'phone'        => '0123216987'

@@ -8,8 +8,12 @@ use App\Models\User;
 class Staff extends User
 {
     protected $table = 'staff';
+    protected $primaryKey = 'staff_id';
+    public $incrementing = false;
+    public $timestamps = false;
 
     public $fillable = [
+        'staff_id',
         'manager_id',
         'date_joined',
         'designation',
@@ -24,7 +28,7 @@ class Staff extends User
     protected $casts = [
         'staff_id' => 'integer',
         'manager_id' => 'integer',
-        'date_joined' => 'datetime',
+        'date_joined' => 'date',
         'designation' => 'string',
         'salary' => 'double'
     ];
@@ -35,9 +39,11 @@ class Staff extends User
      * @var array
      */
     public static $rules = [
+        'staff_id' => 'required|integer',
         'manager_id' => 'required|integer',
-        'payment_date' => 'required|datetime',
-        'payment_total' => 'required|double',
+        'date_joined' => 'required',
+        'designation' => 'required',
+        'salary' => 'required'
     ];
 
     public function managerDetails()
@@ -47,6 +53,6 @@ class Staff extends User
 
     public function info()
     {
-        return $this->belongsTo(\App\Models\User::class, 'id');
+        return $this->belongsTo(\App\Models\User::class, 'staff_id', 'id');
     }
 }

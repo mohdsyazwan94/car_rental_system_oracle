@@ -50,8 +50,8 @@
                         <td>{{ $student->student_no }}</td>
                         <td>{{ $student->course_name }}</td>
                         <td class="text-center">
-                            <a href="{{ route('students.edit', ['student' => $student->id]) }}" title="Edit student" class="btn btn-sm btn-secondary text-nowrap mb-1" ><span class="fas fa-edit"></span> Edit</a>
-                            <a href="{{ route('students.destroy', ['student' => $student->id])}}" class="btn btn-sm btn-danger mb-1" data-toggle="modal" data-target="#modal-delete" ><span class="fas fa-trash"></span> Delete</a>
+                            <a href="{{ route('students.edit', ['student' => $student->student_id]) }}" title="Edit student" class="btn btn-sm btn-secondary text-nowrap mb-1" ><span class="fas fa-edit"></span> Edit</a>
+                            <a href="{{ route('students.destroy', ['student' => $student->student_id])}}" class="btn btn-sm btn-danger mb-1" data-toggle="modal" data-target="#modal-delete" ><span class="fas fa-trash"></span> Delete</a>
                         </td>
                     </tr>
                 @endforeach

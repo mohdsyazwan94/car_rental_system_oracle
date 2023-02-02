@@ -4,20 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Booking extends Model
 {
-    use SoftDeletes;
 
     use HasFactory;
 
     public $table = 'booking';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-    protected $dates = ['deleted_at'];
+    protected $primaryKey = 'booking_id';
+    public $timestamps = false;
 
     public $fillable = [
         'vehicle_id',
@@ -60,23 +55,18 @@ class Booking extends Model
         'booking_status' => 'required|string'
     ];
 
-    public function vehicleDetails()
+    public function vehicles()
     {
         return $this->belongsTo(\App\Models\Vehicle::class, 'vehicle_id');
     }
 
-    public function studentDetails()
+    public function userDetails()
     {
-        return $this->belongsTo(\App\Models\Student::class, 'user_id');
+        return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
     }
 
-    public function staffDetails()
+    public function approvers()
     {
-        return $this->belongsTo(\App\Models\Staff::class, 'user_id');
-    }
-
-    public function managerDetails()
-    {
-        return $this->belongsTo(\App\Models\Staff::class, 'approved_by');
+        return $this->belongsTo(\App\Models\Staff::class, 'approved_by', 'staff_id');
     }
 }

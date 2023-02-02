@@ -12,11 +12,11 @@
         <div class="card-header">
             <h3 class="card-title">
                 <i class="fas fa-bars mr-1"></i>
-                Reservation List
+                Booking List
             </h3>
             <!-- card-tools -->
             <div class="card-tools">
-                <a href="{{ route('reservations.create') }}" class="btn bg-gradient-success btn-sm">  <!-- untuk pergi ke Viewan tambah -->
+                <a href="{{ route('bookings.create') }}" class="btn bg-gradient-success btn-sm">  <!-- untuk pergi ke Viewan tambah -->
                     <i class="fa fa-plus"></i> 
                     Add New
                 </a>
@@ -31,36 +31,38 @@
             <table id="example1" class="table table-bordered">
                 <thead class="thead-light">
                     <tr class="tr-color text-center">
-                        <th width="5%">#</th>
-                        <th>Reservation Number</th>
-                        <th>Room Number</th>
-                        <th>Check-in</th>
-                        <th>Check-out</th>
-                        <th>Reservation Status</th>
-                        <th>Reservation Type</th>
+                        <th>Booking ID</th>
+                        <th>Vehicle Registration No</th>
+                        <th>Booking By</th>
+                        <th>Approved By</th>
+                        <th>Booking Start Date</th>
+                        <th>Booking End Date</th>
+                        <th>Booking Total (RM)</th>
+                        <th>Booking Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($reservations as $key=>$reservation)
+                @foreach($bookings as $key=>$booking)
                     <tr>
-                        <td scope="row" class="text-center">{{ ++$key }}</td>
-                        <td>{{ $reservation->id }}</td>
-                        <td>{{ $reservation->roomDetails->room_number }}</td>
-                        <td>{{ $reservation->check_in->format('d-m-Y') }}</td>
-                        <td>{{ $reservation->check_out->format('d-m-Y') }}</td>
-                        <td>{{ $reservation->reservationStatus->name }}</td>
-                        <td>{{ $reservation->reservation_type }}</td>
+                        <td>{{ $booking->booking_id }}</td>
+                        <td>{{ $booking->vehicles->vehicle_registration }}</td>
+                        <td>{{ $booking->userDetails->full_name }}</td>
+                        <td>{{ $booking->approvers->info->full_name }}</td>
+                        <td>{{ $booking->booking_start_date->format('d M Y H:i') }}</td>
+                        <td>{{ $booking->booking_end_date->format('d M Y H:i') }}</td>
+                        <td>{{ $booking->booking_total }}</td>
+                        <td>{{ $booking->booking_status }}</td>
                         <td class="text-center">
-                            @if($reservation->reservation_status_id == 2)
-                                <a href="{{ route('reservations.checkin', ['reservation' => $reservation->id]) }}" class="btn btn-sm btn-warning mb-1" data-toggle="modal" data-target="#modal-activate" >CHECK-IN</a>
-                            @elseif($reservation->reservation_status_id == 3)
-                                <a href="{{ route('reservations.checkout', ['reservation' => $reservation->id])}}" class="btn btn-sm btn-primary mb-1" data-toggle="modal" data-target="#modal-deactivate" >CHECK-OUT</a>
+                            @if($booking->booking_status == 'Booked')
+                                <a href="{{ route('bookings.checkin', ['booking' => $booking->booking_id]) }}" class="btn btn-sm btn-primary mb-1" data-toggle="modal" data-target="#modal-activate" >Approve</a>
+                            @elseif($booking->booking_status == 'Pending Return')
+                                <a href="{{ route('bookings.checkout', ['booking' => $booking->booking_id])}}" class="btn btn-sm btn-warning mb-1" data-toggle="modal" data-target="#modal-deactivate" >Returning Car</a>
                             @else
                                 
                             @endif
-                            {{-- <a href="{{ route('reservations.edit', ['reservation' => $reservation->id]) }}" title="Edit reservation" class="btn btn-sm btn-secondary text-nowrap mb-1" ><span class="fas fa-edit"></span> Edit</a>
-                            <a href="{{ route('reservations.destroy', ['reservation' => $reservation->id])}}" class="btn btn-sm btn-danger mb-1" data-toggle="modal" data-target="#modal-delete" ><span class="fas fa-trash"></span> Delete</a> --}}
+                            {{-- <a href="{{ route('bookings.edit', ['booking' => $booking->id]) }}" title="Edit booking" class="btn btn-sm btn-secondary text-nowrap mb-1" ><span class="fas fa-edit"></span> Edit</a>
+                            <a href="{{ route('bookings.destroy', ['booking' => $booking->id])}}" class="btn btn-sm btn-danger mb-1" data-toggle="modal" data-target="#modal-delete" ><span class="fas fa-trash"></span> Delete</a> --}}
                         </td>
                     </tr>
                 @endforeach
@@ -76,7 +78,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-              <h4 class="modal-title">Do you want to delete this reservation?</h4>
+              <h4 class="modal-title">Do you want to delete this booking?</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -99,15 +101,18 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header bg-warning">
-              <h4 class="modal-title">Confirm check-out for this guest?</h4>
+              <h4 class="modal-title">Returning Car</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+            <div class="modal-body">
+                <p class="modal-body">Please confirm payment has been made and car has been returned.</p>
+              </div>
             <div class="modal-footer justify-content-right">
             <form method="POST">
             @csrf
-              <button class="btn btn-warning">Confirm Check-out</button>
+              <button class="btn btn-warning">Confirm</button>
             </form>
             </div>
           </div>
@@ -121,7 +126,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h4 class="modal-title">Confirm check-in for this guest?</h4>
+                <h4 class="modal-title">Approve this booking?</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -129,7 +134,7 @@
             <div class="modal-footer justify-content-right">
             <form method="POST">
             @csrf
-                <button class="btn btn-primary">Confirm Check-in</button>
+                <button class="btn btn-primary">Approve</button>
             </form>
             </div>
             </div>

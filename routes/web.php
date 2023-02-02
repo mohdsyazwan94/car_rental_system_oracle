@@ -45,9 +45,9 @@ Route::resource('students', App\Http\Controllers\Admin\StudentController::class)
 Route::post('/students/{student}/activate', [App\Http\Controllers\Admin\StudentController::class, 'activate'])->name('students.activate');
 Route::post('/students/{student}/deactivate', [App\Http\Controllers\Admin\StudentController::class, 'deactivate'])->name('students.deactivate');
 
-Route::resource('rooms', App\Http\Controllers\Admin\RoomController::class);
-Route::resource('roomTypes', App\Http\Controllers\Admin\RoomTypeController::class);
+Route::resource('vehicles', App\Http\Controllers\Admin\VehicleController::class);
+//Route::resource('roomTypes', App\Http\Controllers\Admin\RoomTypeController::class);
 
-Route::resource('reservations', App\Http\Controllers\Admin\ReservationController::class);
-Route::post('/reservations/{reservation}/checkin', [App\Http\Controllers\Admin\ReservationController::class, 'checkin'])->name('reservations.checkin');
-Route::post('/reservations/{reservation}/checkout', [App\Http\Controllers\Admin\ReservationController::class, 'checkout'])->name('reservations.checkout');
+Route::resource('bookings', App\Http\Controllers\Admin\BookingController::class);
+Route::post('/bookings/{booking}/checkin', [App\Http\Controllers\Admin\BookingController::class, 'checkin'])->name('bookings.checkin');
+Route::post('/bookings/{booking}/checkout', [App\Http\Controllers\Admin\BookingController::class, 'checkout'])->name('bookings.checkout');

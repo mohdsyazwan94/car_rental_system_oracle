@@ -69,20 +69,31 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'     => 'required|string|max:100',
+            'full_name'     => 'required|string|max:100',
             'email'    => ['required', 'string', 'email', 'max:150', 'unique:users'],
             'phone'    => ['required', 'digits_between:8,14'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'date_joined'     => 'required|string|max:100',
+            'designation'     => 'required|string|max:100',
+            'salary'     => 'required|string|max:100',
         ]);
 
-        $user = User::create([
-            'name'     => $request->name,
+        $staff = User::create([
+            'full_name' => $request->full_name,
             'email'    => $request->email,
             'phone'    => $request->phone,
             'password' => Hash::make($request->password),
         ]);
 
-        $user->roles()->sync(2);  //If one or more role is selected associate user to roles 
+        $users = Staff::create(array(
+            'staff_id' => $staff->id,
+            'date_joined' => '02/02/2022',
+            'designation' => 'Staff',
+            'salary'     => '1200',
+            'manager_id' => 1
+        ));
+
+        //$user->roles()->sync(2);  //If one or more role is selected associate user to roles 
 
         return redirect()->route('users.index')->with('success', 'User created!');
     }
@@ -106,7 +117,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = Staff::findOrFail($id);
         return view('admins.users.edit', compact('user'));
     }
 
@@ -119,23 +130,35 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $request->validate([
-            'name'     => 'required|string|max:100',
-            'email'    => ['required', 'string', 'email', 'max:150', 'unique:users,id,'.$id],
+            'full_name'     => 'required|string|max:100',
+            'email'    => ['required', 'string', 'email', 'max:150', 'unique:users,email,'.$id],
             'phone'    => ['required', 'digits_between:8,14'],
-            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults(),
+            'date_joined'     => 'required|string|max:100',
+            'designation'     => 'required|string|max:100',
+            'salary'     => 'required|string|max:100'],
         ]);
 
 		$data = [
-            'name'     => $request->name,
+            'full_name'     => $request->full_name,
             'email'    => $request->email,
             'phone'    => $request->phone,
         ];
 
+        $data2 = [
+            'date_joined'     => $request->date_joined,
+            'designation'    => $request->designation,
+            'salary'    => $request->salary,
+        ];
+        
 		if($request->password)
             $data['password'] = Hash::make($request->password);
 		
         $user = User::where('id', $id)->update($data);
+
+        $staff = Staff::where('staff_id', $id)->update($data2);
 
         return redirect()->route('users.index')->with('success', 'User updated!');
     }

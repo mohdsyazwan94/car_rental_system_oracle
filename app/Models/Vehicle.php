@@ -8,18 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Vehicle extends Model
 {
-    use SoftDeletes;
-
     use HasFactory;
 
     public $table = 'vehicle';
-    
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-    protected $dates = ['deleted_at'];
+    protected $primaryKey = 'vehicle_id';
+    public $timestamps = false;
 
     public $fillable = [
+        'vehicle_id',
         'vehicle_type',
         'vehicle_color',
         'vehicle_registration',
@@ -45,6 +41,7 @@ class Vehicle extends Model
      * @var array
      */
     public static $rules = [
+        'vehicle_id' => 'required|integer',
         'vehicle_type' => 'required|string|max:30',
         'vehicle_color' => 'required|string|max:30',
         'vehicle_registration' => 'required|string|max:50',

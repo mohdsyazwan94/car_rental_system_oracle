@@ -9,15 +9,15 @@
 		</h3>
 	</div>
 	<!-- /.card-header -->
-	<form method="POST" action="{{ $isEdit ? route('students.update', $student->id) : route('students.store') }}">
+	<form method="POST" action="{{ $isEdit ? route('students.update', $student->student_id) : route('students.store') }}">
 		{{ $isEdit ? method_field('PUT') : '' }}
 		@csrf
 		<div class="card-body row">
 			<div class="form-group col-md-6">
-				<label for="input-name">Full Name</label>
-				<input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" id="input-name" name="name" value="{{ old('name', $student->info->full_name) }}" required autofocus>
+				<label for="input-full_name">Full Name</label>
+				<input type="text" class="form-control @error('full_name') is-invalid @enderror" placeholder="Full Name" id="input-full_name" name="full_name" value="{{ old('full_name', $student->info->full_name) }}" required autofocus>
 				<!-- sent message error input -->
-				@error('name') 
+				@error('full_name') 
 				<span class="invalid-feedback" role="alert">
 					<strong> *{{ $message }} </strong>
 				</span>
@@ -47,7 +47,7 @@
 			</div>
 			<div class="form-group col-md-6">
 				<label for="input-phone">Student No.</label>
-				<input type="text" class="form-control @error('student_no') is-invalid @enderror" placeholder="Student No" id="input-student_no" name="student_no" value="{{ old('student_no', $student->student_no) }}" required>
+				<input type="number" class="form-control @error('student_no') is-invalid @enderror" placeholder="Student No" id="input-student_no" name="student_no" value="{{ old('student_no', $student->student_no) }}" required>
 				@error('student_no') 
 				<span class="invalid-feedback" role="alert">
 					<strong> *{{ $message }} </strong>

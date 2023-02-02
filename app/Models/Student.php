@@ -8,8 +8,12 @@ use App\Models\User;
 class Student extends User
 {
     protected $table = 'student';
+    protected $primaryKey = 'student_id';
+    public $incrementing = false;
+    public $timestamps = false;
 
     public $fillable = [
+        'student_id',
         'student_no',
         'course_name'
     ];
@@ -37,6 +41,6 @@ class Student extends User
 
     public function info()
     {
-        return $this->belongsTo(\App\Models\User::class, 'id');
+        return $this->belongsTo(\App\Models\User::class, 'student_id', 'id');
     }
 }

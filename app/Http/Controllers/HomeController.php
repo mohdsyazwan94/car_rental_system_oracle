@@ -32,16 +32,16 @@ class HomeController extends Controller
     {
         //total_reservations
         $today = Carbon::now();
-        $today_reservation = Booking::where('booking_status', 'reserved')->whereDate('created_at', $today)->get();
-        $today_reservation = count($today_reservation);
+        //$today_reservation = Booking::where('booking_status', 'reserved')->whereDate('created_at', $today)->get();
+        $today_reservation = 0;
 
         //customer check-in today
-        $customer_check_in = Booking::where('booking_status', 'reserved')->whereDate('booking_end_date', '>', $today)->get();
-        $customer_check_in = count($customer_check_in);
+        //$customer_check_in = Booking::where('booking_status', 'reserved')->whereDate('booking_end_date', '>', $today)->get();
+        $customer_check_in = 0;
 
         //available vehicles
-        $customer_check_out = Booking::where('booking_status', 'reserved')->whereDate('updated_at', '=', $today)->get();
-        $customer_check_out = count($customer_check_out);
+        //$customer_check_out = Booking::where('booking_status', 'reserved')->whereDate('updated_at', '=', $today)->get();
+        $customer_check_out = 0;
 
         return view('index', compact('today_reservation','customer_check_in','customer_check_out'));
     }

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Models\Staff;
+use App\Models\User;
 
 class LoginRequest extends FormRequest
 {
@@ -43,18 +45,21 @@ class LoginRequest extends FormRequest
      */
     public function authenticate()
     {
-        $this->ensureIsNotRateLimited();
+        $user = User::all()->where('email', request()->login_email)->first();
+        $staff = Staff::findorFail($user->id);
+        if(isset($staff)){
+            $this->ensureIsNotRateLimited();
 
-        //if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-        if (! Auth::attempt(['email' => request()->login_email, 'password' => request()->password])) {
-            RateLimiter::hit($this->throttleKey());
+            if (! Auth::attempt(['email' => request()->login_email, 'password' => request()->password])) {
+                RateLimiter::hit($this->throttleKey());
 
-            throw ValidationException::withMessages([
-                'login_email' => __('auth.failed'),
-            ]);
+                throw ValidationException::withMessages([
+                    'login_email' => __('auth.failed'),
+                ]);
+            }
+
+            RateLimiter::clear($this->throttleKey());
         }
-
-        RateLimiter::clear($this->throttleKey());
     }
 
     /**

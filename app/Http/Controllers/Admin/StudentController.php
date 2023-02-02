@@ -40,7 +40,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $student = new Student();
+        $student = new User();
         return view('admins.students.create', compact('student'));
     }
 
@@ -53,7 +53,7 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'           => 'required|string|max:255',
+            'full_name'           => 'required|string|max:255',
             'email'          => 'required|string|email|max:255|unique:users',
             'phone'          => 'required|digits_between:8,14',
             'student_no'           => 'required|string|max:255',
@@ -62,7 +62,7 @@ class StudentController extends Controller
         ]);
 
         $student = User::create([
-            'name'           => $request->name,
+            'full_name'           => $request->full_name,
             'email'          => $request->email,
             'password'       => Hash::make($request->password),
             'phone'          => $request->phone,
@@ -108,8 +108,8 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'           => 'required|string|max:255',
-            'email'          => ['required', 'string', 'email', 'max:150', 'unique:users,id,'.$id],
+            'full_name'           => 'required|string|max:255',
+            'email'          => ['required', 'string', 'email', 'max:150', 'unique:users,email,'.$id],
             'phone'          => 'required|digits_between:8,14',
             'student_no'           => 'required|string|max:255',
             'course_name'           => 'required|string|max:255',
@@ -117,17 +117,22 @@ class StudentController extends Controller
         ]);
 
         $data = [
-            'name'           => $request->name,
-            'email'          => $request->email,
-            'phone'          => $request->phone,
-            'student_no'         => $request->student_no,
-            'course_name'         => $request->course_name
+            'full_name'     => $request->full_name,
+            'email'    => $request->email,
+            'phone'    => $request->phone,
+        ];
+
+        $data2 = [
+            'student_no'     => $request->student_no,
+            'course_name'    => $request->course_name
         ];
 
         if($request->password)
             $data['password'] = Hash::make($request->password);
-        
-        $student = Student::where('id', $id)->update($data);
+
+        $user = User::where('id', $id)->update($data);
+
+        $student = Student::where('student_id', $id)->update($data2);
 
         return redirect()->route('students.index')->with('success', 'Student updated!');
     }

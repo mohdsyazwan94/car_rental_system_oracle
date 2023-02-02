@@ -62,6 +62,18 @@
 			</a>
 		</li>
 		<li class="nav-item">
+			<a href="{{ route('vehicles.index') }}" class="nav-link {{ request()->routeIs('vehicles.*') ? 'active' : '' }}">
+			<i class="nav-icon fa fa-car"></i>
+			<p>Vehicles</p>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="{{ route('bookings.index') }}" class="nav-link {{ request()->routeIs('reservations.*') ? 'active' : '' }}">
+			<i class="nav-icon fas fa-clock"></i>
+			<p>Booking Details</p>
+			</a>
+		</li>
+		<li class="nav-item">
 			<a href="{{ route('students.index') }}" class="nav-link {{ request()->routeIs('students.*') ? 'active' : '' }}">
 			<i class="nav-icon fas fa-users"></i>
 			<p>Students</p>
