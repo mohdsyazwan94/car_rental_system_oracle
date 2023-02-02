@@ -43,11 +43,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
-        if(Auth::user()->hasRole('admin'))
-            $redirect = redirect('/admin');
-        else
-            $redirect = redirect('/');
-
+        $redirect = redirect('/');
         Auth::guard('web')->logout();
 
 		// if(!Auth::guard('admin')->check()){

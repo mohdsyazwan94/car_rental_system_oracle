@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
-                <i class="fa fa-bed mr-1"></i>
+                <i class="fa fa-car mr-1"></i>
                 RESERVATIONS
             </h3>
         </div><!-- /.card-header -->
@@ -16,7 +16,7 @@
       
                     <div class="info-box-content">
                       <span class="info-box-text">TODAY RESERVATIONS</span>
-                      <span class="info-box-number">{{ $today_reservation }}</span>
+                      <span class="info-box-number">7</span>
                     </div>
                     <!-- /.info-box-content -->
                   </div>
@@ -25,11 +25,11 @@
                 <!-- /.col -->
                 <div class="col-md-3 col-sm-6 col-12">
                   <div class="info-box">
-                    <span class="info-box-icon bg-success"><i class="fas fa-user"></i></span>
+                    <span class="info-box-icon bg-success"><i class="fas fa-check-square"></i></span>
       
                     <div class="info-box-content">
-                      <span class="info-box-text">CUSTOMERS CHECKED-IN</span>
-                      <span class="info-box-number">{{ $customer_check_in }}</span>
+                      <span class="info-box-text">AVAILABLE CAR</span>
+                      <span class="info-box-number">25</span>
                     </div>
                     <!-- /.info-box-content -->
                   </div>
@@ -38,11 +38,11 @@
                 <!-- /.col -->
                 <div class="col-md-3 col-sm-6 col-12">
                   <div class="info-box">
-                    <span class="info-box-icon bg-warning"><i class="fas fa-check"></i></span>
+                    <span class="info-box-icon bg-warning"><i class="fas fa-car"></i></span>
       
                     <div class="info-box-content">
-                      <span class="info-box-text">CUSTOMERS CHECKED-OUT</span>
-                      <span class="info-box-number">{{ $customer_check_out }}</span>
+                      <span class="info-box-text">RESERVED / IN-USE CAR</span>
+                      <span class="info-box-number">16</span>
                     </div>
                     <!-- /.info-box-content -->
                   </div>
@@ -54,8 +54,8 @@
                     <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
       
                     <div class="info-box-content">
-                      <span class="info-box-text">Most choosen room</span>
-                      <span class="info-box-number">Deluxe Room</span>
+                      <span class="info-box-text">Most choosen car</span>
+                      <span class="info-box-number">Perodua Axia</span>
                     </div>
                     <!-- /.info-box-content -->
                   </div>
@@ -82,7 +82,7 @@
             <!-- small box -->
             <div class="small-box bg-primary">
                 <div class="inner">
-                <h3>RM 32,150.59</h3>
+                <h3>RM 16,512.00</h3>
     
                 <p>TOTAL REVENUES - CURRENT MONTH</p>
                 </div>
@@ -96,7 +96,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
                 <div class="inner">
-                <h3>RM 65,768.25</h3>
+                <h3>RM 24,894.00</h3>
     
                 <p>TOTAL REVENUES - PREVIOUS MONTH</p>
                 </div>
@@ -110,7 +110,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
                 <div class="inner">
-                <h3>RM 377,694.82</h3>
+                <h3>RM 41,406.00</h3>
 
                 <p>TOTAL REVENUES - THIS YEAR</p>
                 </div>

@@ -7,6 +7,7 @@ use App\Models\User;
 
 class Staff extends User
 {
+    protected $table = 'staff';
 
     public $fillable = [
         'manager_id',
@@ -42,5 +43,10 @@ class Staff extends User
     public function managerDetails()
     {
         return $this->belongsTo(\App\Models\User::class, 'manager_id');
+    }
+
+    public function info()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'id');
     }
 }

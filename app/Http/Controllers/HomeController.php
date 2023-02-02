@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Room;
-use App\Models\Reservation;
+use App\Models\Vehicle;
+use App\Models\Booking;
 use App\Models\Payment;
 use App\Models\User;
 use Auth;
@@ -32,15 +32,15 @@ class HomeController extends Controller
     {
         //total_reservations
         $today = Carbon::now();
-        $today_reservation = Reservation::where('reservation_status_id', 2)->whereDate('created_at', $today)->get();
+        $today_reservation = Booking::where('booking_status', 'reserved')->whereDate('created_at', $today)->get();
         $today_reservation = count($today_reservation);
 
         //customer check-in today
-        $customer_check_in = Reservation::where('reservation_status_id', 3)->whereDate('check_out', '>', $today)->get();
+        $customer_check_in = Booking::where('booking_status', 'reserved')->whereDate('booking_end_date', '>', $today)->get();
         $customer_check_in = count($customer_check_in);
 
-        //available rooms
-        $customer_check_out = Reservation::where('reservation_status_id', 4)->whereDate('updated_at', '=', $today)->get();
+        //available vehicles
+        $customer_check_out = Booking::where('booking_status', 'reserved')->whereDate('updated_at', '=', $today)->get();
         $customer_check_out = count($customer_check_out);
 
         return view('index', compact('today_reservation','customer_check_in','customer_check_out'));
@@ -63,25 +63,21 @@ class HomeController extends Controller
             $end_date =Carbon::createFromFormat('d/m/Y H:i:s',  $dates[0].'00:00:00')->addDay();
         }
 
-        //check reservation for room that has been booked
-        $reservations = Reservation::whereBetween('check_in', [$start_date, $end_date])->orWhereBetween('check_out', [$start_date, $end_date])->get();
-        $reservations = $reservations->where('reservation_status_id', '!=', 5)->pluck('room_id');
+        //check reservation for vehicle that has been booked
+        $reservations = Booking::whereBetween('booking_start_date', [$start_date, $end_date])->orWhereBetween('booking_end_date', [$start_date, $end_date])->get();
+        $reservations = $reservations->where('booking_status', '!=', 'reserved')->pluck('vehicle_id');
 
         //available room
-        $rooms = Room::all()->whereNotIn('id', $reservations->toArray())->where('room_status_id', 1)->groupBy('room_type_id');
+        $vehicles = Vehicle::all()->whereNotIn('id', $reservations->toArray())->where('vehicle_id', 1)->groupBy('vehicle_type');
 
-        // $test = [];
-
-        // $rooms = 
-
-        return view('reservation', compact('date_range', 'start_date', 'end_date', 'rooms'));
-        //->with('success', 'Room deleted!')
+        return view('reservation', compact('date_range', 'start_date', 'end_date', 'vehicles'));
+        //->with('success', 'Vehicle deleted!')
     }
 
     public function confirmReservation(Request $request)
     {
         
-        $room = Room::findOrFail($request->room_id);
+        $vehicle = Vehicle::findOrFail($request->vehicle_id);
         $today_date = Carbon::now()->format('d/m/Y');
         $start_date = Carbon::parse($request->start_date);
         $end_date = Carbon::parse($request->end_date);
@@ -91,8 +87,7 @@ class HomeController extends Controller
         $start_date = $start_date->format('d/m/Y');
         $end_date = $end_date->format('d/m/Y');
             
-        //dd($room->room_number);
-        return view('confirmation', compact('room','today_date','start_date','end_date','number_of_night'));
+        return view('confirmation', compact('vehicle','today_date','start_date','end_date','number_of_night'));
     }
 
     public function createReservation(Request $request)
@@ -109,16 +104,16 @@ class HomeController extends Controller
                 'phone'          => $request->phone
             ]);
 
-            $user->roles()->sync(1);
+            //$user->roles()->sync(1);
         }
 
         //create reservation
-        $reservation = Reservation::create([
+        $reservation = Booking::create([
             'customer_id'  => $user->id,
-            'room_id'  => $request->room_id,
+            'vehicle_id'  => $request->vehicle_id,
             'check_in'  => Carbon::createFromFormat('d/m/Y',  $request->start_date),
             'check_out'  => Carbon::createFromFormat('d/m/Y',  $request->end_date),
-            'reservation_status_id'  => 2,
+            'booking_status'  => 2,
             'reservation_type'  => 'online'
         ]);
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Student;
+use App\Models\Staff;
 use App\Models\Book;
 use App\Models\BookStatus;
 use App\Models\Borrow;
@@ -31,11 +33,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::whereHas(
-            'roles', function($q){
-                $q->where('name', 'admin');
-            }
-        )->withTrashed()->get();
+        // $users = User::whereHas(
+        //     'roles', function($q){
+        //         $q->where('name', 'admin');
+        //     }
+        // )->withTrashed()->get();
+        
+        // $staff = new Staff();
+        // dd($staff->first()->full_name);
+
+        //dd(Staff::all());
+        $users = Staff::all();
+        //dd($users);
 
         return view('admins.users.index', compact('users'));
     }

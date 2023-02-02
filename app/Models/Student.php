@@ -7,6 +7,7 @@ use App\Models\User;
 
 class Student extends User
 {
+    protected $table = 'student';
 
     public $fillable = [
         'student_no',
@@ -33,4 +34,9 @@ class Student extends User
         'student_no' => 'required|string',
         'course_name' => 'required|string',
     ];
+
+    public function info()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'id');
+    }
 }

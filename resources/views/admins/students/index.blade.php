@@ -12,11 +12,11 @@
         <div class="card-header">
             <h3 class="card-title">
                 <i class="fas fa-bars mr-1"></i>
-                User List
+                Student List
             </h3>
             <!-- card-tools -->
             <div class="card-tools">
-                <a href="{{ route('customers.create') }}" class="btn bg-gradient-success btn-sm">  <!-- untuk pergi ke Viewan tambah -->
+                <a href="{{ route('students.create') }}" class="btn bg-gradient-success btn-sm">  <!-- untuk pergi ke Viewan tambah -->
                     <i class="fa fa-plus"></i> 
                     Add New
                 </a>
@@ -35,26 +35,23 @@
                         <th>Name</th>
                         <th>Email</th> 
                         <th>Contact No.</th>
-                        <th>Status</th>
+                        <th>Student No</th>
+                        <th>Course Name</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($customers as $key=>$customer)
+                @foreach($students as $key=>$student)
                     <tr>
                         <td scope="row" class="text-center">{{ ++$key }}</td>
-                        <td>{{ $customer->name }}</td>
-                        <td><a href="mailto:{{ $customer->email }}" target="_blank">{{ $customer->email }}</a></td>
-                        <td><a href="tel:{{ $customer->phone }}" target="_blank">{{ $customer->phone }}</a></td>
-                        <td class="text-center"><span class="badge badge-{{ !$customer->deleted_at ? 'primary' : 'warning'}}">{{ $customer->deleted_at ? 'Inactive' : 'Active' }}</span></td>
+                        <td>{{ $student->info->full_name }}</td>
+                        <td><a href="mailto:{{ $student->info->email }}" target="_blank">{{ $student->info->email }}</a></td>
+                        <td><a href="tel:{{ $student->info->phone }}" target="_blank">{{ $student->info->phone }}</a></td>
+                        <td>{{ $student->student_no }}</td>
+                        <td>{{ $student->course_name }}</td>
                         <td class="text-center">
-                            @if(!$customer->deleted_at)
-                                <a href="{{ route('customers.deactivate', ['customer' => $customer->id]) }}" class="btn btn-sm btn-warning mb-1" data-toggle="modal" data-target="#modal-deactivate" >Deactivate</a>
-                            @else
-                                <a href="{{ route('customers.activate', ['customer' => $customer->id])}}" class="btn btn-sm btn-primary mb-1" data-toggle="modal" data-target="#modal-activate" >Activate</a>
-                            @endif
-                            <a href="{{ route('customers.edit', ['customer' => $customer->id]) }}" title="Edit Customer" class="btn btn-sm btn-secondary text-nowrap mb-1" ><span class="fas fa-edit"></span> Edit</a>
-                            <a href="{{ route('customers.destroy', ['customer' => $customer->id])}}" class="btn btn-sm btn-danger mb-1" data-toggle="modal" data-target="#modal-delete" ><span class="fas fa-trash"></span> Delete</a>
+                            <a href="{{ route('students.edit', ['student' => $student->id]) }}" title="Edit student" class="btn btn-sm btn-secondary text-nowrap mb-1" ><span class="fas fa-edit"></span> Edit</a>
+                            <a href="{{ route('students.destroy', ['student' => $student->id])}}" class="btn btn-sm btn-danger mb-1" data-toggle="modal" data-target="#modal-delete" ><span class="fas fa-trash"></span> Delete</a>
                         </td>
                     </tr>
                 @endforeach
@@ -70,7 +67,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-              <h4 class="modal-title">Do you want to delete this customer?</h4>
+              <h4 class="modal-title">Do you want to delete this student?</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -93,7 +90,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header bg-warning">
-              <h4 class="modal-title">Do you want to deactivate this customer?</h4>
+              <h4 class="modal-title">Do you want to deactivate this student?</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -115,7 +112,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h4 class="modal-title">Do you want to activate this customer?</h4>
+                <h4 class="modal-title">Do you want to activate this student?</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>

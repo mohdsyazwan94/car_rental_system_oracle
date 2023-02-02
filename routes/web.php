@@ -23,7 +23,7 @@ Route::get('/reservation', [App\Http\Controllers\HomeController::class, 'checkRe
 Route::get('/confirmReservation', [App\Http\Controllers\HomeController::class, 'confirmReservation'])->name('confirmReservation');
 Route::post('/createReservation', [App\Http\Controllers\HomeController::class, 'createReservation'])->name('createReservation');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::resource('home', App\Http\Controllers\HomeController::class);
 });
 
@@ -33,20 +33,21 @@ Route::fallback( function () {
     abort( 404 );
 } );
 
-Route::middleware(['middleware' => 'role:admin'])->group(function () {
-    Route::resource('users', App\Http\Controllers\Admin\UserController::class);
-    Route::post('/users/{user}/activate', [App\Http\Controllers\Admin\UserController::class, 'activate'])->name('users.activate');
-	Route::post('/users/{user}/deactivate', [App\Http\Controllers\Admin\UserController::class, 'deactivate'])->name('users.deactivate');
+// Route::middleware(['middleware' => 'role:admin'])->group(function () {
+    
+// });
 
-    Route::resource('customers', App\Http\Controllers\Admin\CustomerController::class);
-    Route::post('/customers/{customer}/activate', [App\Http\Controllers\Admin\CustomerController::class, 'activate'])->name('customers.activate');
-	Route::post('/customers/{customer}/deactivate', [App\Http\Controllers\Admin\CustomerController::class, 'deactivate'])->name('customers.deactivate');
+Route::resource('users', App\Http\Controllers\Admin\UserController::class);
+Route::post('/users/{user}/activate', [App\Http\Controllers\Admin\UserController::class, 'activate'])->name('users.activate');
+Route::post('/users/{user}/deactivate', [App\Http\Controllers\Admin\UserController::class, 'deactivate'])->name('users.deactivate');
 
-    Route::resource('rooms', App\Http\Controllers\Admin\RoomController::class);
-    Route::resource('roomTypes', App\Http\Controllers\Admin\RoomTypeController::class);
+Route::resource('students', App\Http\Controllers\Admin\StudentController::class);
+Route::post('/students/{student}/activate', [App\Http\Controllers\Admin\StudentController::class, 'activate'])->name('students.activate');
+Route::post('/students/{student}/deactivate', [App\Http\Controllers\Admin\StudentController::class, 'deactivate'])->name('students.deactivate');
 
-    Route::resource('reservations', App\Http\Controllers\Admin\ReservationController::class);
-    Route::post('/reservations/{reservation}/checkin', [App\Http\Controllers\Admin\ReservationController::class, 'checkin'])->name('reservations.checkin');
-	Route::post('/reservations/{reservation}/checkout', [App\Http\Controllers\Admin\ReservationController::class, 'checkout'])->name('reservations.checkout');
-});
+Route::resource('rooms', App\Http\Controllers\Admin\RoomController::class);
+Route::resource('roomTypes', App\Http\Controllers\Admin\RoomTypeController::class);
 
+Route::resource('reservations', App\Http\Controllers\Admin\ReservationController::class);
+Route::post('/reservations/{reservation}/checkin', [App\Http\Controllers\Admin\ReservationController::class, 'checkin'])->name('reservations.checkin');
+Route::post('/reservations/{reservation}/checkout', [App\Http\Controllers\Admin\ReservationController::class, 'checkout'])->name('reservations.checkout');

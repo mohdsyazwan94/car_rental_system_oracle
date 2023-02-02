@@ -7,12 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,9 +19,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'full_name',
-        'user_password',
-        'user_email',
-        'user_phone'
+        'password',
+        'email',
+        'phone'
     ];
 
     /**
@@ -41,17 +39,35 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'user_id' => 'integer',
+        'id' => 'integer',
         'full_name' => 'string',
-        'user_password' => 'string',
-        'user_email' => 'string',
-        'user_phone' => 'string'
+        'password' => 'string',
+        'email' => 'string',
+        'phone' => 'string'
     ];
 
     public static $rules = [
         'full_name' => 'required|string|max:255',
-        'user_email' => 'required|string|max:255',
-        'user_password' => 'required|string|max:255',
-        'user_phone' => 'required|string|max:255',
+        'email' => 'required|string|max:255',
+        'password' => 'required|string|max:255',
+        'phone' => 'required|string|max:255',
     ];
+
+    // public function full_name(){
+    //     return $this->full_name;
+    // }
+
+    // public function userType(){
+    //     return 
+    // }
+
+    // public function staffs()
+    // {
+    //     return $this->belongsTo(\App\Models\Staff::class, 'id');
+    // }
+
+    // public function students()
+    // {
+    //     return $this->belongsTo(\App\Models\Student::class, 'id');
+    // }
 }

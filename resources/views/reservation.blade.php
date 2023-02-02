@@ -40,24 +40,24 @@
         </div>
         <div class="our-info-area pt-40 pb-40 pl-40 pr-40">
             <div class="row">
-                @foreach($rooms as $key => $room)
+                @foreach($vehicles as $key => $vehicle)
                 <div class="col-md-6">
                     <form method="GET" action="{{ route('confirmReservation') }}">
                     @csrf
                     <div class="card">
                         <div class="row no-gutters">
                             <div class="col-auto">
-                                <img src="{{ asset('storage/rooms/'.$room->first()->roomTypes->image) }}" class="img-fluid" alt="" style="height:300px; width:500px;">
+                                <img src="{{ asset('storage/vehicles/'.$vehicle->first()->vehicleTypes->image) }}" class="img-fluid" alt="" style="height:300px; width:500px;">
                             </div>
                             <div class="col" style="padding-top:50px; padding-bottom:50px; padding-left:50px; padding-right:50px;">
                                 <div class="card-block px-2 ">
-                                    <h4 class="card-title">{{ $room->first()->roomTypes->type_name }}</h4>
-                                    <p class="card-text">{{ $room->first()->roomTypes->description }}</p>
-                                    <p class="card-text">Only {{ count($room) }} rooms left !</p>
+                                    <h4 class="card-title">{{ $vehicle->first()->vehicleTypes->type_name }}</h4>
+                                    <p class="card-text">{{ $vehicle->first()->vehicleTypes->description }}</p>
+                                    <p class="card-text">Only {{ count($vehicle) }} vehicles left !</p>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-danger btn-flat btn-lg float-right">BOOK NOW</button>
                                     </div>
-                                    <input type="hidden" name="room_id" value="{{ $room->first()->id }}">
+                                    <input type="hidden" name="vehicle_id" value="{{ $vehicle->first()->id }}">
                                     <input type="hidden" name="start_date" value="{{ $start_date }}">
                                     <input type="hidden" name="end_date" value="{{ $end_date }}">
                                 </div>

@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Student;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
-class CustomerController extends Controller
+class StudentController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -27,13 +28,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = User::whereHas(
-            'roles', function($q){
-                $q->where('name', 'customer');
-            }
-        )->withTrashed()->get();
-
-        return view('admins.customers.index', compact('customers'));
+        $students = Student::all();
+        
+        return view('admins.students.index', compact('students'));
     }
 
     /**
@@ -43,8 +40,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $customer = new User();
-        return view('admins.customers.create', compact('customer'));
+        $student = new Student();
+        return view('admins.students.create', compact('student'));
     }
 
     /**
@@ -58,26 +55,24 @@ class CustomerController extends Controller
         $request->validate([
             'name'           => 'required|string|max:255',
             'email'          => 'required|string|email|max:255|unique:users',
-            'gender'         => 'required|string|min:2|max:255',
             'phone'          => 'required|digits_between:8,14',
-            'address_1'      => 'nullable|string|min:2|max:255',
-            'address_2'      => 'nullable|string|min:2|max:255',
+            'student_no'           => 'required|string|max:255',
+            'course_name'           => 'required|string|max:255',
             'password'       => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $customer = User::create([
+        $student = User::create([
             'name'           => $request->name,
-            'gender'         => $request->gender,
             'email'          => $request->email,
             'password'       => Hash::make($request->password),
             'phone'          => $request->phone,
-            'address1'       => $request->address_1,
-            'address2'       => $request->address_2,
+            'student_no'         => $request->student_no,
+            'course_name'         => $request->course_name,
         ]);
 
-        $customer->roles()->sync(1);  //If one or more role is selected associate user to roles 
+        //$student->roles()->sync(1);  //If one or more role is selected associate user to roles 
 
-        return redirect()->route('customers.index')->with('success', 'Customer created!');
+        return redirect()->route('students.index')->with('success', 'Student created!');
     }
 
     /**
@@ -99,8 +94,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $customer = User::findOrFail($id);
-        return view('admins.customers.edit', compact('customer'));
+        $student = Student::findOrFail($id);
+        return view('admins.students.edit', compact('student'));
     }
 
     /**
@@ -115,28 +110,26 @@ class CustomerController extends Controller
         $request->validate([
             'name'           => 'required|string|max:255',
             'email'          => ['required', 'string', 'email', 'max:150', 'unique:users,id,'.$id],
-            'gender'         => 'required|string|min:2|max:255',
             'phone'          => 'required|digits_between:8,14',
-            'address_1'      => 'nullable|string|min:2|max:255',
-            'address_2'      => 'nullable|string|min:2|max:255',
+            'student_no'           => 'required|string|max:255',
+            'course_name'           => 'required|string|max:255',
             'password'       => ['nullable', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $data = [
             'name'           => $request->name,
-            'gender'         => $request->gender,
             'email'          => $request->email,
             'phone'          => $request->phone,
-            'address1'       => $request->address_1,
-            'address2'       => $request->address_2,
+            'student_no'         => $request->student_no,
+            'course_name'         => $request->course_name
         ];
 
         if($request->password)
             $data['password'] = Hash::make($request->password);
         
-        $customer = User::where('id', $id)->update($data);
+        $student = Student::where('id', $id)->update($data);
 
-        return redirect()->route('customers.index')->with('success', 'Customer updated!');
+        return redirect()->route('students.index')->with('success', 'Student updated!');
     }
 
     /**
@@ -148,30 +141,30 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         try {
-			$customer = User::withTrashed()->where('id', $id)->firstOrFail()->forceDelete();
+			$student = User::withTrashed()->where('id', $id)->firstOrFail()->forceDelete();
 		} 
 		catch(\Illuminate\Database\QueryException $ex) {
 		   if($ex->getCode() === '23000') {
 			   return redirect()
-			   ->route('customers.index')
-			   ->with('error', 'Unable to delete Customer. Selected Customer currently in use!');
+			   ->route('students.index')
+			   ->with('error', 'Unable to delete student. Selected student currently in use!');
 		   } 
 		}
 
-        return redirect()->route('customers.index')->with('success', 'Customer deleted!');
+        return redirect()->route('students.index')->with('success', 'student deleted!');
     }
 
     public function activate(Request $request, $id)
     {
-        $customer = User::withTrashed()->findOrFail($id)->restore();
+        $student = User::withTrashed()->findOrFail($id)->restore();
 
-        return back()->with('success', 'Customer activated!');
+        return back()->with('success', 'student activated!');
     }
 	
     public function deactivate(Request $request, $id)
     {
-        $customer = User::findOrFail($id)->delete();
+        $student = User::findOrFail($id)->delete();
 
-        return back()->with('success', 'Customer deactivated!');
+        return back()->with('success', 'student deactivated!');
     }
 }

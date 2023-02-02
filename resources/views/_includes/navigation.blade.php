@@ -11,7 +11,7 @@
 	  	<!-- User Dropdown Menu -->
       	<li class="nav-item dropdown">
 			<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-				{{ Auth::user()->name }} 
+				{{ Auth::user()->full_name }} 
 			</a>
 			<div class="dropdown-menu py-0" aria-labelledby="navbarVersionDropdown">
 				<a class="dropdown-item" href="">Profile</a>
@@ -46,13 +46,7 @@
 			<img src="{{ asset('img/avatar.png')}}" class="img-circle elevation-2" alt="User Image">
 		</div>
 		<div class="data">
-			<span class="d-block" style="color: #fff">
-				@role('admin')
-					ADMIN
-				@else
-					CUSTOMER
-				@endrole
-			</span>
+			<span class="d-block" style="color: #fff">{{ Auth::user()->full_name }} </span>
 		</div>
 	</div>
 
@@ -67,7 +61,19 @@
 			<p>Home</p>
 			</a>
 		</li>
-		@role('customer')
+		<li class="nav-item">
+			<a href="{{ route('students.index') }}" class="nav-link {{ request()->routeIs('students.*') ? 'active' : '' }}">
+			<i class="nav-icon fas fa-users"></i>
+			<p>Students</p>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" >
+			<i class="nav-icon fas fa-user-cog"></i>
+			<p>Users</p>
+			</a>
+		</li>
+		{{-- @role('customer')
 			<li class="nav-item">
 				<a href="" class="nav-link {{ request()->routeIs('deliveries.*') ? 'active' : '' }}">
 				<i class="nav-icon fa fa-bed"></i>
@@ -106,9 +112,9 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a href="{{ route('customers.index') }}" class="nav-link {{ request()->routeIs('customers.*') ? 'active' : '' }}">
+				<a href="{{ route('students.index') }}" class="nav-link {{ request()->routeIs('students.*') ? 'active' : '' }}">
 				<i class="nav-icon fas fa-users"></i>
-				<p>Customers</p>
+				<p>students</p>
 				</a>
 			</li>
 			<li class="nav-item">
@@ -117,7 +123,7 @@
 				<p>Users</p>
 				</a>
 			</li>
-		@endrole
+		@endrole --}}
 		</ul>
 	</nav>
 	<!-- /.sidebar-menu -->

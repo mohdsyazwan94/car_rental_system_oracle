@@ -35,7 +35,9 @@
                         <th>Name</th>
                         <th>Email</th> 
                         <th>Contact No.</th>
-                        <th>Status</th>
+                        <th>Date Joined</th>
+                        <th>Designation</th>
+                        <th>Manager</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -43,16 +45,13 @@
                 @foreach($users as $key=>$user)
                     <tr>
                         <td scope="row" class="text-center">{{ ++$key }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td><a href="mailto:{{ $user->email }}" target="_blank">{{ $user->email }}</a></td>
-                        <td><a href="tel:{{ $user->phone }}" target="_blank">{{ $user->phone }}</a></td>
-                        <td class="text-center"><span class="badge badge-{{ !$user->deleted_at ? 'primary' : 'warning'}}">{{ $user->deleted_at ? 'Inactive' : 'Active' }}</span></td>
+                        <td>{{ $user->info->full_name }}</td>
+                        <td><a href="mailto:{{ $user->info->email }}" target="_blank">{{ $user->info->email }}</a></td>
+                        <td><a href="tel:{{ $user->info->phone }}" target="_blank">{{ $user->info->phone }}</a></td>
+                        <td>{{ $user->date_joined->format('d M Y') }}</td>
+                        <td>{{ $user->designation }}</td>
+                        <td>{{ $user->managerDetails->full_name ?? '' }}</td>
                         <td class="text-center">
-                            @if(!$user->deleted_at)
-                                <a href="{{ route('users.deactivate', ['user' => $user->id]) }}" class="btn btn-sm btn-warning mb-1" data-toggle="modal" data-target="#modal-deactivate" >Deactivate</a>
-                            @else
-                                <a href="{{ route('users.activate', ['user' => $user->id])}}" class="btn btn-sm btn-primary mb-1" data-toggle="modal" data-target="#modal-activate" >Activate</a>
-                            @endif
                             <a href="{{ route('users.edit', ['user' => $user->id]) }}" title="Edit User" class="btn btn-sm btn-secondary text-nowrap mb-1" ><span class="fas fa-edit"></span> Edit</a>
                             <a href="{{ route('users.destroy', ['user' => $user->id])}}" class="btn btn-sm btn-danger mb-1" data-toggle="modal" data-target="#modal-delete" ><span class="fas fa-trash"></span> Delete</a>
                         </td>
