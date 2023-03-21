@@ -82,7 +82,7 @@
 		<li class="nav-item">
 			<a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" >
 			<i class="nav-icon fas fa-user-cog"></i>
-			<p>Users</p>
+			<p>Staff</p>
 			</a>
 		</li>
 		{{-- @role('customer')

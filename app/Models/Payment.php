@@ -37,9 +37,7 @@ class Payment extends Model
      * @var array
      */
     public static $rules = [
-        'reservation_id' => 'required|integer',
-        'payment_date' => 'required|datetime',
-        'payment_total' => 'required|double',
+        'booking_id' => 'required|integer'
     ];
 
     public function bookingDetails()

@@ -15,9 +15,9 @@ class CreateBookingTable extends Migration
     {
         Schema::create('booking', function (Blueprint $table) {
             $table->id('booking_id');
-            $table->foreignId('vehicle_id')->references('vehicle_id')->on('vehicle');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('approved_by')->nullable()->constrained('users');
+            $table->foreignId('vehicle_id')->references('vehicle_id')->on('vehicle')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamp('booking_start_date');
             $table->timestamp('booking_end_date');
             $table->string('booking_total', 9, 2);

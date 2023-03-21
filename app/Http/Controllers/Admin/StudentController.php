@@ -145,16 +145,20 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        try {
-			$student = User::withTrashed()->where('id', $id)->firstOrFail()->forceDelete();
-		} 
-		catch(\Illuminate\Database\QueryException $ex) {
-		   if($ex->getCode() === '23000') {
-			   return redirect()
-			   ->route('students.index')
-			   ->with('error', 'Unable to delete student. Selected student currently in use!');
-		   } 
-		}
+        $user = User::findOrFail($id);
+        $student = Student::findOrFail($user->id);
+        $student->forceDelete();
+        $user->forceDelete();
+        // try {
+		// 	$student = User::withTrashed()->where('id', $id)->firstOrFail()->forceDelete();
+		// } 
+		// catch(\Illuminate\Database\QueryException $ex) {
+		//    if($ex->getCode() === '23000') {
+		// 	   return redirect()
+		// 	   ->route('students.index')
+		// 	   ->with('error', 'Unable to delete student. Selected student currently in use!');
+		//    } 
+		// }
 
         return redirect()->route('students.index')->with('success', 'student deleted!');
     }

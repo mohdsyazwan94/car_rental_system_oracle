@@ -18,7 +18,7 @@ class CreateStaffTable extends Migration
             $table->date('date_joined');
             $table->string('designation');
             $table->string('salary');
-            $table->foreignId('manager_id')->nullable()->references('id')->on('users');
+            $table->foreignId('manager_id')->nullable()->references('id')->on('users')->onDelete('cascade');
         });
     }
 

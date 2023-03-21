@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Student;
 use App\Models\Staff;
-use App\Models\Book;
-use App\Models\BookStatus;
-use App\Models\Borrow;
-use App\Models\Returned;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
@@ -152,7 +148,7 @@ class UserController extends Controller
             'designation'    => $request->designation,
             'salary'    => $request->salary,
         ];
-        
+
 		if($request->password)
             $data['password'] = Hash::make($request->password);
 		
@@ -171,22 +167,26 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        try {
-			$user = User::withTrashed()->where('id', $id)->firstOrFail();
-			if($user && $user->id != auth()->user()->id)
-				$user->forceDelete();
-			else
-				return redirect()
-			   ->route('users.index')
-			   ->with('error', 'You cannot delete yourself!');
-		} 
-		catch(\Illuminate\Database\QueryException $ex) {
-		   if($ex->getCode() === '23000') {
-			   return redirect()
-			   ->route('users.index')
-			   ->with('error', 'Unable to delete User. Selected User currently in use!');
-		   } 
-		}
+        $user = User::findOrFail($id);
+        $staff = Staff::findOrFail($user->id);
+        $staff->forceDelete();
+        $user->forceDelete();
+        // try {
+		// 	$user = User::where('id', $id)->firstOrFail();
+		// 	if($user && $user->id != auth()->user()->id)
+		// 		$user->delete();
+		// 	else
+		// 		return redirect()
+		// 	   ->route('users.index')
+		// 	   ->with('error', 'You cannot delete yourself!');
+		// } 
+		// catch(\Illuminate\Database\QueryException $ex) {
+		//    if($ex->getCode() === '23000') {
+		// 	   return redirect()
+		// 	   ->route('users.index')
+		// 	   ->with('error', 'Unable to delete User. Selected User currently in use!');
+		//    } 
+		// }
 
         return redirect()->route('users.index')->with('success', 'User deleted!');
     }

@@ -18,7 +18,7 @@
             <div class="card-tools">
                 <a href="{{ route('bookings.create') }}" class="btn bg-gradient-success btn-sm">  <!-- untuk pergi ke Viewan tambah -->
                     <i class="fa fa-plus"></i> 
-                    Add New
+                    Create Booking
                 </a>
             </div>
             <!-- /.card-tools -->

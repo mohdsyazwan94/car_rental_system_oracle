@@ -25,7 +25,7 @@
                             <div class="col-md-12">
                                 <div class="hero__caption">
                                     <h1 style="text-align:center;"><span style="color:#FFFFFF; background-color:grey; opacity: 0.8;">PERAK CAR RENTAL</span></h1>
-                                    <div class="d-flex align-items-center">
+                                    {{-- <div class="d-flex align-items-center">
                                         <div class="container" style="width:70%">
                                         <form method="GET" action="{{ route('checkReservation') }}">
                                         @csrf
@@ -40,7 +40,7 @@
                                             </div>
                                         </form>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

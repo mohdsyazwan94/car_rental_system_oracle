@@ -15,7 +15,7 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payment', function (Blueprint $table) {
             $table->id('payment_id');
-            $table->foreignId('booking_id')->references('booking_id')->on('booking');
+            $table->foreignId('booking_id')->references('booking_id')->on('booking')->onDelete('cascade');
             $table->timestamp('payment_date')->nullable();
             $table->string('payment_total', 9, 2);
         });
